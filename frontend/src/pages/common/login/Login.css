@@ -1,0 +1,40 @@
+.login{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card-container{
+    max-width: 400px;
+    width: 100%;
+    margin:15px;
+}
+
+.login-card{
+    padding:15px;
+}
+
+
+.login-button{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.login-body{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+}
+
+.forget-password{
+    color: var(--sapButton_Emphasized_Background);
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}

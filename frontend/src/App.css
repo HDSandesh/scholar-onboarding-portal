@@ -1,0 +1,14 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control{
+  display: block;
+  width: 100%;
+}
