@@ -1,0 +1,10 @@
+.navigation-bar{
+    display: none;
+    height: 100%;
+}
+
+@media screen and (min-width:720px) {
+    .navigation-bar{
+        display: block;
+    }
+}

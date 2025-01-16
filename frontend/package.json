@@ -5,8 +5,13 @@
   "dependencies": {
     "@ui5/webcomponents": "^2.6.2",
     "@ui5/webcomponents-fiori": "^2.6.2",
+    "@ui5/webcomponents-icons": "^2.6.2",
+    "@ui5/webcomponents-icons-business-suite": "^2.6.2",
+    "@ui5/webcomponents-icons-tnt": "^2.6.2",
     "@ui5/webcomponents-react": "^2.6.0",
     "cra-template": "1.2.0",
+    "i": "^0.3.7",
+    "npm": "^11.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.1",

@@ -1,0 +1,47 @@
+.mobile-nav{
+    position: fixed;
+    width: 100%;
+    bottom:0;
+    padding: 15px 0px;
+    z-index: 100;
+    display: block;
+    border-radius: 10px 10px 0 0;
+    box-shadow:var(--shadow);
+    /* background-color: #E1E4E9; */
+    background-color: #fff;
+}
+
+.mobile-nav .nav-group{
+    margin: 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mobile-nav .nav-group .nav-link{
+    text-align: center;
+    font-size: 0.85em;
+    color:unset;
+    text-decoration: none;
+    outline: none;
+}
+
+.mobile-nav .nav-group .nav-link .icon{
+    width: 20px;
+    height: 20px;
+    color: #474747;
+}
+
+
+.mobile-nav .nav-group .nav-link.active>*{
+    color:var(--sapButton_Emphasized_Background)
+}
+
+.nav-label{
+    margin-top:5px;
+}
+
+@media screen and (min-width:720px) {
+    .mobile-nav{
+        display: none;
+    }
+}
