@@ -2,13 +2,14 @@ import React from "react";
 import { Button, Card, Input } from "@ui5/webcomponents-react";
 import logo from "../../../assets/sap.svg"
 import "./Login.css";
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="login">
     <Card className="login-card-container">
       <div className="login-card">
         <div className="logo">
-            <img src={logo} width="100"></img>
+            <img src={logo} width="100" alt="logo"></img>
         </div>
         <div className="login-body">
           <div className="form-group">
@@ -26,7 +27,7 @@ const Login = () => {
               type="Password"
               valueState="None"
             />
-          <a href="" className="forget-password">Forget Password?</a>
+          <Link to="forget-password" className="forget-password">Forget Password?</Link>
           </div>
         </div>
         <Button className="login-button" design="Emphasized">

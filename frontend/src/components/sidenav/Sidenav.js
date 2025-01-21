@@ -4,7 +4,7 @@ const Sidenav = ({ handler }) => {
   return (
     <div className="navigation-bar">
       <SideNavigation slot="sideContent" onSelectionChange={handler}>
-        <SideNavigationItem text="Home" icon="home" />
+        <SideNavigationItem text="Home" icon="home"/>
         <SideNavigationItem text="Connect" icon="people-connected" />
         <SideNavigationItem text="Courses" icon="education" />
         <SideNavigationItem text="Forms" icon="survey" />
@@ -15,7 +15,7 @@ const Sidenav = ({ handler }) => {
           text="Logout"
           href="https://www.sap.com/about/legal/impressum.html"
           target="_blank"
-          icon="log" 
+          icon="log"
         />
       </SideNavigation>
     </div>
