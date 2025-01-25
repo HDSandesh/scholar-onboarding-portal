@@ -1,0 +1,26 @@
+.event{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.event-body{
+    display: flex;
+    gap:15px;
+}
+
+.color-band{
+    width: 3px;
+    background-color: red;
+    border-radius: 5px;
+}
+
+.event-body h4{
+    margin:0;
+}
+
+.event-body p{
+    margin-bottom: 0;
+    margin-top: 8px;
+    font-size: 0.75rem;
+}

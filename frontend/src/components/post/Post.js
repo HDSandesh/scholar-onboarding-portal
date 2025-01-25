@@ -3,21 +3,12 @@ import "./Post.css";
 import '@ui5/webcomponents-icons/dist/heart-2.js'
 import '@ui5/webcomponents-icons/dist/post.js'
 import { Button, Icon, Menu, MenuItem } from "@ui5/webcomponents-react";
+import Profile from "../../utils/profile/Profile";
 const Post = ({ name, postedOn, postText }) => {
   return (
     <div className="post">
       <div className="post-header">
-        <div className="profile">
-          <img
-            className="display-picture"
-            src="https://sap.github.io/ui5-webcomponents-react/v2/assets/Person-B7wHqdJw.png"
-            alt="profile"
-          />
-          <div className="profile-details">
-            <h4>{name}</h4>
-            <span>{postedOn}</span>
-          </div>
-        </div>
+        <Profile name={name} picture={"https://sap.github.io/ui5-webcomponents-react/v2/assets/Person-B7wHqdJw.png"} description={postedOn}/>
         <div className="post-menu">
               <Icon
                 name="overflow"

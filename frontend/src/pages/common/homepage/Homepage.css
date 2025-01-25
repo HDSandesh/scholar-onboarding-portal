@@ -10,6 +10,7 @@
 
 .activities-section{
     display: none;
+    margin:10px 20px;
 }
 
 @media screen and (min-width:720px) {
@@ -25,7 +26,13 @@
         display: block;
     }
     .activities-section{
-        display: block;
+        display: flex;
+        position: sticky;
+        top:25px;
+        height: 90vh;
+        flex-direction: column;
+        flex-grow: 0;
+        gap:30px;
         padding-left: 20px;
     }
 }

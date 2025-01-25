@@ -3,33 +3,6 @@
     justify-content: space-between;
 }
 
-.profile{
-    display: flex;
-    align-items: center;
-    gap:10px;
-}
-
-.display-picture{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.profile-details{
-    display: flex;
-    flex-direction: column;
-    gap:6px;
-}
-
-.profile-details h4{
-    margin: 0;
-}
-
-.profile-details span{
-    font-size: 0.8rem;
-    color: #626262;
-}
-
 .post-menu{
     display: flex;
     align-items: center;

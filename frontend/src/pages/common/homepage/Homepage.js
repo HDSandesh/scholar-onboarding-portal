@@ -7,9 +7,9 @@ import "@ui5/webcomponents-icons/dist/education.js";
 import "@ui5/webcomponents-icons/dist/survey.js";
 import "@ui5/webcomponents-icons/dist/sys-help.js";
 import "@ui5/webcomponents-icons/dist/log.js";
-import { Card, Text, Title } from "@ui5/webcomponents-react";
 import Post from "../../../components/post/Post";
 import Leaderboard from "../../../components/leaderboard/Leaderboard";
+import Events from "../../../components/events/Events";
 const Homepage = (props) => {
   return (
     <div className="homepage">
@@ -66,9 +66,8 @@ const Homepage = (props) => {
         />
       </section>
       <section className="activities-section">
-        <div className="leaderboard">
           <Leaderboard/>
-        </div>
+          <Events />
       </section>
     </div>
   );

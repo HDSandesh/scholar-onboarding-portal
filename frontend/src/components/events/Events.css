@@ -1,0 +1,12 @@
+.events-title{
+    margin:0 0 20px 0;
+}
+
+.events{
+    padding: 20px;
+}
+
+.events-body{
+    display: grid;
+    gap:25px;
+}

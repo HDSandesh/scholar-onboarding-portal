@@ -1,3 +1,16 @@
+.leaderboard-title{
+    margin:0 0 20px 0;
+}
+
+.events-card{
+    padding:10px 15px;
+}
+
 .leaderboard{
-    margin:20px;
+    padding: 20px;
+}
+
+.leaderboard-body{
+    display: grid;
+    gap:15px;
 }

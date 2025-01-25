@@ -1,139 +1,21 @@
-import { Card, CardHeader, Table, TableCell, TableHeaderCell, TableHeaderRow, TableRow } from "@ui5/webcomponents-react";
+import { Card } from "@ui5/webcomponents-react";
 import React from "react";
 import "./Leaderboard.css"
+import LeaderboardItem from "../../utils/leaderboard-item/LeaderboardItem";
 const Leaderboard = () => {
   return (
     <Card>
-      <h3 className="leaderboard">Leaderboard</h3>
-      <Table
-        headerRow={
-          <TableHeaderRow sticky>
-            <TableHeaderCell>
-              <span>Rank</span>
-            </TableHeaderCell>
-            <TableHeaderCell>
-              <span>Name</span>
-            </TableHeaderCell>
-            <TableHeaderCell>
-              <span>Points</span>
-            </TableHeaderCell>
-          </TableHeaderRow>
-        }
-        onMove={function Ki() {}}
-        onMoveOver={function Ki() {}}
-        onRowClick={function Ki() {}}
-      >
-        <TableRow>
-          <TableCell>
-            <span>#1</span>
-          </TableCell>
-          <TableCell>
-            <span>Nisha Pandey</span>
-          </TableCell>
-          <TableCell>
-            <span>20069</span>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <span>#2</span>
-          </TableCell>
-          <TableCell>
-            <span>Nisha Pandey</span>
-          </TableCell>
-          <TableCell>
-            <span>20069</span>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <span>#3</span>
-          </TableCell>
-          <TableCell>
-            <span>Nisha Pandey</span>
-          </TableCell>
-          <TableCell>
-            <span>20069</span>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <span>#4</span>
-          </TableCell>
-          <TableCell>
-            <span>Nisha Pandey</span>
-          </TableCell>
-          <TableCell>
-            <span>20069</span>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <span>#5</span>
-          </TableCell>
-          <TableCell>
-            <span>Nisha Pandey</span>
-          </TableCell>
-          <TableCell>
-            <span>20069</span>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <span>#6</span>
-          </TableCell>
-          <TableCell>
-            <span>Nisha Pandey</span>
-          </TableCell>
-          <TableCell>
-            <span>20069</span>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <span>#7</span>
-          </TableCell>
-          <TableCell>
-            <span>Nisha Pandey</span>
-          </TableCell>
-          <TableCell>
-            <span>20069</span>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <span>#8</span>
-          </TableCell>
-          <TableCell>
-            <span>Nisha Pandey</span>
-          </TableCell>
-          <TableCell>
-            <span>20069</span>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <span>#9</span>
-          </TableCell>
-          <TableCell>
-            <span>Nisha Pandey</span>
-          </TableCell>
-          <TableCell>
-            <span>20069</span>
-          </TableCell>
-        </TableRow>
-        <TableRow style={{background:'#4DB1FF'}}>
-          <TableCell>
-            <span>#22</span>
-          </TableCell>
-          <TableCell>
-            <span>Sandesh H D</span>
-          </TableCell>
-          <TableCell>
-            <span>19969</span>
-          </TableCell>
-        </TableRow>
-      </Table>
+      <div className="leaderboard">
+        <h3 className="leaderboard-title">Leaderboard</h3>
+        <div className="leaderboard-body">
+          <LeaderboardItem name="Nisha Pandey" rank="1" points="19999"/>
+          <LeaderboardItem name="Sandesh H D" rank="2" points="18999"/>
+          <LeaderboardItem name="GG Ashwin Prabhu (Korean)" rank="3" points="17563`"/>
+          <LeaderboardItem name="Queen of Tears" rank="4" points="16998"/>
+          <LeaderboardItem name="Teacher" rank="5" points="15997"/>
+        </div>
+      </div>
+      
     </Card>
   );
 };

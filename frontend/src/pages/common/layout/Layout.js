@@ -48,7 +48,7 @@ const Layout = (props) => {
           }
           showNotifications
         >
-          <ShellBarItem icon="add" text="ShellBarItem" />
+          <ShellBarItem icon="add" text="Post" />
         </ShellBar>
       }
       sideContent={

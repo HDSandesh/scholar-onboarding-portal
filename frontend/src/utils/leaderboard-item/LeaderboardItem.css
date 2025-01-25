@@ -1,0 +1,25 @@
+.leaderboard-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leaderboard-item-body{
+    display: flex;
+    gap:10px;
+}
+
+.seperator{
+    width: 3px;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+}
+
+.leaderboard-item .display-picture{
+    width: 45px;
+    height: 45px;
+}
+
+.leaderboard-item .profile-details span{
+    color: #188918;
+}
