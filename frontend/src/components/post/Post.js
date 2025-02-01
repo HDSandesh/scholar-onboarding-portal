@@ -2,7 +2,7 @@ import React from "react";
 import "./Post.css";
 import '@ui5/webcomponents-icons/dist/heart-2.js'
 import '@ui5/webcomponents-icons/dist/post.js'
-import { Button, Icon, Menu, MenuItem } from "@ui5/webcomponents-react";
+import { Icon, Menu, MenuItem } from "@ui5/webcomponents-react";
 import Profile from "../../utils/profile/Profile";
 const Post = ({ name, postedOn, postText }) => {
   return (
@@ -47,7 +47,6 @@ const Post = ({ name, postedOn, postText }) => {
             <span>100</span>
         </div>
       </div>
-      <p className="post-seperator"/>
     </div>
   );
 };

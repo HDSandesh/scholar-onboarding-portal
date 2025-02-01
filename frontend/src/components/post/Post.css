@@ -1,3 +1,8 @@
+.post{
+    background-color: white;
+    padding:1rem;
+    border-radius: 10px;
+}
 .post-header{
     display: flex;
     justify-content: space-between;
@@ -29,10 +34,4 @@
 
 .reaction span{
     font-size: 0.9rem;
-}
-
-.post-seperator{
-    margin-top: 12px;
-    height: 1px;
-    background-color:#dcdcdc;
 }

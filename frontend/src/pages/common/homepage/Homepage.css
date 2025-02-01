@@ -5,34 +5,43 @@
 
 .homepage{
     display: grid;
-    margin-bottom: 60px;
+    margin-bottom: 85px;
 }
 
 .activities-section{
     display: none;
     margin:10px 20px;
+    margin-top: 0;;
+}
+.post-area{
+    display: grid;
+    gap:20px;
 }
 
 @media screen and (min-width:720px) {
-    .homepage{
-        grid-template-columns: 65% 35%;
-        margin-bottom: 0;
-    }
-    .post-area{
-        display: grid;
-        gap:20px;
-    }
     .navigation-bar{
         display: block;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .homepage{
+        grid-template-columns: 60% 40%;
+        margin-bottom: 0;
     }
     .activities-section{
         display: flex;
         position: sticky;
-        top:25px;
+        top:20px;
         height: 90vh;
         flex-direction: column;
         flex-grow: 0;
         gap:30px;
-        padding-left: 20px;
+    }
+}
+
+@media screen and (min-width:1400px) {
+    .homepage{
+        grid-template-columns: 70% 30%;
     }
 }

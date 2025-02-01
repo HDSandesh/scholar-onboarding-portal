@@ -5,7 +5,6 @@ import '@ui5/webcomponents-icons/dist/locate-me.js'
 import '@ui5/webcomponents-icons/dist/people-connected.js'
 import '@ui5/webcomponents-icons/dist/education.js'
 import '@ui5/webcomponents-icons/dist/survey.js'
-import '@ui5/webcomponents-icons/dist/sys-help.js'
 import '@ui5/webcomponents-icons/dist/log.js'
 import "@ui5/webcomponents-icons/dist/person-placeholder.js"
 
@@ -32,7 +31,7 @@ const Mobilenav = () => {
                     <div className='nav-label'>Courses</div>
                 </NavLink>
                 <NavLink to="forms" className='nav-link'>
-                    <Icon name="sys-help" className='icon' />
+                    <Icon name="survey" className='icon' />
                     <div className='nav-label'>Forms</div>
                 </NavLink>
             </div>

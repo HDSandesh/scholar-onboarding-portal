@@ -10,9 +10,9 @@ const Leaderboard = () => {
         <div className="leaderboard-body">
           <LeaderboardItem name="Nisha Pandey" rank="1" points="19999"/>
           <LeaderboardItem name="Sandesh H D" rank="2" points="18999"/>
-          <LeaderboardItem name="GG Ashwin Prabhu (Korean)" rank="3" points="17563`"/>
-          <LeaderboardItem name="Queen of Tears" rank="4" points="16998"/>
-          <LeaderboardItem name="Teacher" rank="5" points="15997"/>
+          <LeaderboardItem name="GG Ashwin Prabhu" rank="3" points="17563`"/>
+          <LeaderboardItem name="Krishna" rank="4" points="16998"/>
+          <LeaderboardItem name="Subhash" rank="5" points="15997"/>
         </div>
       </div>
       

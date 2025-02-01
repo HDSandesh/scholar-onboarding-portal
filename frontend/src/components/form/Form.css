@@ -1,0 +1,33 @@
+.form{
+    padding: 20px;
+}
+
+.form-heading{
+    display: flex;
+    gap:10px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.form-title h3{
+    margin-top:0;
+    margin-bottom: 10px;
+}
+
+.form .title-value{
+    color: #DA6C6C;
+    font-weight: bold;
+}
+
+.title-subheading{
+    display: flex;
+    gap:10px;
+}
+
+.form-footer{
+    border-top: 1px solid #dcdcdc;
+    margin-top:10px;
+    padding-top: 10px;
+    display: flex;
+    gap:10px;
+}

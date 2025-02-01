@@ -1,0 +1,43 @@
+.course{
+    padding: 20px;
+}
+
+.course-heading{
+    display: flex;
+    gap:10px;
+    margin-bottom: 20px;
+}
+
+.course-preview{
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+}
+
+.course-title h3{
+    margin-top:0;
+    margin-bottom: 10px;
+}
+
+.title-value{
+    color: #188918;
+    font-weight: bold;
+}
+
+.title-subheading{
+    display: flex;
+    gap:10px;
+}
+
+.hashtags{
+    display: flex;
+    gap:10px;
+}
+
+.course-footer{
+    border-top: 1px solid #dcdcdc;
+    margin-top:10px;
+    padding-top: 10px;
+    display: flex;
+    gap:10px;
+}

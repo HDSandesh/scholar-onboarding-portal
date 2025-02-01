@@ -1,0 +1,57 @@
+.forms{
+    margin-bottom: 70px;
+}
+.course-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap:15px;
+}
+
+.tab-strip{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.tabs{
+    display: flex;
+    gap: 20px;
+}
+
+.tab-heading{
+    cursor: pointer;
+    padding:10px 0 15px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: flex;
+    gap:5px;
+    align-items: center;
+}
+
+.tab-body{
+    padding:10px 0;
+}
+
+.active-tab{
+    color: var(--sapButton_Emphasized_Background);
+    border-bottom: 2px solid var(--sapButton_Emphasized_Background);
+}
+
+@media screen and (min-width: 720px) {
+    .courses{
+        margin-bottom: 0;
+    }  
+}
+/* Large devices (992px and up) */
+@media screen and (min-width: 992px) {
+    .course-list {
+        grid-template-columns: 1fr 1fr;
+    }    
+}
+
+/* Extra large devices (1200px and up) */
+@media screen and (min-width: 1200px) {
+    .course-list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
