@@ -1,0 +1,45 @@
+.question-container{
+    padding: 10px;
+}
+
+.question-header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--_ui5-v2-6-2_side_navigation_navigation_separator_background_color);
+    padding-bottom: 5px;
+}
+
+.question-body{
+    margin-top: 10px;
+}
+
+.form-input {
+    width: 100%;
+    grid-row: 2;
+}
+.mcq-option-group{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.delete-button{
+    margin-left: 8px;
+}
+
+.delete-button{
+    color:#aa0808;
+}
+
+.add-option{
+    margin-top: 15px;
+}
+
+@media screen and (min-width:720px) {
+    .question-header{
+        grid-template-columns: 1fr auto;
+    }
+    .form-input{
+        grid-row: unset;
+    }
+}

@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import Form from '../../../components/form/Form'
 import './Forms.css'
 import { Button, Icon } from '@ui5/webcomponents-react'
+import { useNavigate } from 'react-router-dom'
 
 const Forms = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();
   return (
     <div className="forms">
       <div className="tab-container">
@@ -29,7 +31,7 @@ const Forms = () => {
               <span>Inactive (10)</span>
             </div>
           </div>
-          <Button design="Emphasized">Create Form</Button>
+          <Button design="Emphasized" onClick={()=>navigate('form-builder')} >Create Form</Button>
         </div>
         <div className="tab-body">
           {activeTab === 0 && (

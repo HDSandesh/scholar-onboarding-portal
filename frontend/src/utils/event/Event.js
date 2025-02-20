@@ -7,7 +7,7 @@ const Event = () => {
       <div className="event-body">
         <div className="color-band"></div>
         <div>
-          <h4>Event Heading bla bla</h4>
+          <h4>Some Event Heading 1</h4>
           <p>20-12-2025 10:00 AM</p>
         </div>
       </div>

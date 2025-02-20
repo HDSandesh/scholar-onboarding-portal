@@ -1,0 +1,26 @@
+.users-list{
+    display: grid;
+    margin-top: 15px;
+    max-height: 70vh;
+    gap: 20px;
+    overflow: auto;
+}
+
+.profile-container{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.profile-container.active{
+    background: var(--sapList_Hover_SelectionBackground);
+    border-radius: 10px;
+}
+
+@media screen and (min-width: 1200px) {
+    .users-list{
+        max-height: 75vh;
+    }
+}

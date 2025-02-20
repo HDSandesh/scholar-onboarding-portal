@@ -26,7 +26,7 @@ const form = ({isActive}) => {
           </div>
           <div className="form-footer">
             <Button design="Emphasized">Responses (0)</Button>
-            <Button design={isActive?'Negative':'Positive'}>{isActive?'Deactive':'Activate'}</Button>
+            <Button design={isActive?'Negative':'Positive'}>{isActive?'Deactivate':'Activate'}</Button>
           </div>
         </div>
       </Card>

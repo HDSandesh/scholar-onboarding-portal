@@ -15,54 +15,54 @@ const Homepage = (props) => {
     <div className="homepage">
       <section className="post-area">
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
         <Post
-          name="Nisha Pandey"
+          name="Sandesh H D"
           postedOn="20 mins ago"
-          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of HTML which can hack NASA"
+          postText="Hello Guys, I'm thrilled to share that I've been completed the Advanced version of UI5"
         />
       </section>
       <section className="activities-section">
