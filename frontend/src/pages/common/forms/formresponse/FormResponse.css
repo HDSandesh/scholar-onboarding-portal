@@ -1,9 +1,9 @@
 .form-response{
-    max-height: 80vh;
     overflow: auto;
     /* display: none; */
     position: absolute;
     width: 100%;
+    left:0;
     top:0;
     background-color: white;
     height: 100%;
@@ -26,6 +26,7 @@
     gap:10px;
     position: sticky;
     top:0;
+    left:0;
     z-index: 100;
     background-color: #fff;
     padding:5px 0 10px;
@@ -38,11 +39,12 @@
 }
 
 @media screen and (min-width:1200px) {
-    .response-header-mobile{
-        display: none;
-    }
     .form-response{
         z-index: 0;
+        max-height: 80vh;
         position: unset;
+    }
+    .response-header-mobile{
+        display: none;
     }
 }

@@ -2,7 +2,7 @@ import { Button, Card, Icon, Tag } from "@ui5/webcomponents-react";
 import React from "react";
 import "@ui5/webcomponents-icons/dist/number-sign.js";
 import "./Course.css";
-const Course = () => {
+const Course = ({completed}) => {
   return (
     <div className="course-container">
       <Card>
@@ -47,7 +47,7 @@ const Course = () => {
           </div>
           <div className="course-footer">
             <Button design="Emphasized">Link</Button>
-            <Button>Mark as completed</Button>
+            {!completed && <Button>Mark as completed</Button>}
           </div>
         </div>
       </Card>

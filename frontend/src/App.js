@@ -8,6 +8,7 @@ import FAQ from "./pages/common/faq/FAQ";
 import Forms from "./pages/common/forms/Forms";
 import Courses from "./pages/common/courses/Courses";
 import FormBuilder from "./pages/common/forms/formbuilder/FormBuilder";
+import Accounts from "./pages/common/accounts/Accounts";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/connect" element={<Connect />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/forms" element={<Forms />} />
+            <Route path="/accounts" element={<Accounts />} />
             <Route path="/forms/form-builder" element={<FormBuilder />} />
             <Route path="/faq" element={<FAQ />} />
           </Route>

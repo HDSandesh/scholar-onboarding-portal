@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Course from "../../../components/course/Course";
 import "./Courses.css";
-import { Button, Icon, Tab, TabContainer } from "@ui5/webcomponents-react";
+import { Button, Icon } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents-icons/dist/status-completed.js";
 import "@ui5/webcomponents-icons/dist/pending.js";
 const Courses = () => {
@@ -46,9 +46,9 @@ const Courses = () => {
           {activeTab === 1 && (
             <div className="tab">
               <div className="course-list">
-                <Course />
-                <Course />
-                <Course />
+                <Course completed/>
+                <Course completed/>
+                <Course completed/>
               </div>
             </div>
           )}

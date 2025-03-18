@@ -1,0 +1,43 @@
+.message-heading-container{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap:10px;
+}
+
+.message-details h4{
+    margin:0 0 5px;
+}
+
+
+.message-container .time{
+    font-weight: normal;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+
+.message-container .display-picture{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.extended-message{
+    display: grid;
+    grid-template-columns: 35px auto;
+    column-gap:10px;
+    align-items: center;
+}
+
+.faded-time{
+    visibility: hidden;
+}
+
+.extended-message:hover > .faded-time{
+    visibility: visible;
+}
+
+.message-container p{
+    margin:3px 0;
+}

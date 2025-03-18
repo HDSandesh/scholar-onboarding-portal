@@ -19,7 +19,7 @@
     border-radius: 10px;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 720px) {
     .users-list{
         max-height: 75vh;
     }

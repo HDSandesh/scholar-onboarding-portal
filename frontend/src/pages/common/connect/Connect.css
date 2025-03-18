@@ -1,0 +1,23 @@
+.connect-card{
+    padding:15px 15px 0;
+    display: grid;
+}
+.connect-card .users-list{
+    max-height: 75vh;
+}
+.messages-page{
+    padding:15px;
+}
+
+@media screen and (min-width: 1200px) {
+    .connect-card {
+      grid-template-columns: 1fr auto 3fr;
+      gap:20px;
+    }
+    .connect-card .users-list{
+        max-height: 80vh;
+    }
+    .connect-card .message-area{
+        max-height: 85vh;
+    }
+}

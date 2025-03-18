@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-table": "^8.21.2",
     "@ui5/webcomponents": "^2.6.2",
     "@ui5/webcomponents-fiori": "^2.6.2",
     "@ui5/webcomponents-icons": "^2.6.2",

@@ -1,0 +1,60 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 10px;
+  }
+  
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  .table-header-cell {
+    background-color: #f4f6f9;
+    font-weight: bold;
+    padding: 14px;
+    text-align: left;
+    border-bottom: 2px solid #d6d6d6;
+    white-space: nowrap; /* Prevents header from wrapping */
+  }
+  
+  .table-header-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .table-cell {
+    padding: 12px;
+    border-bottom: 1px solid #d6d6d6;
+  }
+  
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #eef1f5;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .table-search input {
+    width: 200px;
+    padding: 8px;
+  }
+  
+  .table-action-button {
+    margin-left: auto;
+  }
+  
+  .accounts-table {
+    padding: 16px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+.status-button {
+  width: 5rem;
+}
