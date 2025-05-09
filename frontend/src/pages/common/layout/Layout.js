@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidenav from "../../../components/sidenav/Sidenav";
 import "./Layout.css";
 import "@ui5/webcomponents-icons/dist/home.js";
@@ -10,16 +10,36 @@ import "@ui5/webcomponents-icons/dist/sys-help.js";
 import "@ui5/webcomponents-icons/dist/log.js";
 import "@ui5/webcomponents-icons/dist/add.js";
 import { Avatar, NavigationLayout, ShellBar, ShellBarItem } from "@ui5/webcomponents-react";
+import UserContext from "../../../contexts/UserContext";
 import Mobilenav from "../../../components/mobilenav/Mobilenav";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const Layout = (props) => {
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState()
   const handleSelectionChange = (e) => {
     const path = e.detail.item.text.toLowerCase();
-    navigate(path === "home" ? "/" : path);
+    if (path === "logout") {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userInfo");
+      navigate("/login");
+    } else {
+      navigate(path === "home" ? "/" : `/${path}`);
+    }
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (userInfo) {
+      setUserInfo(userInfo);
+    }
+
+  }, [navigate]);
   return (
+    <UserContext.Provider value={userInfo}>
     <NavigationLayout
       {...props}
       header={
@@ -48,7 +68,6 @@ const Layout = (props) => {
           }
           showNotifications
         >
-          <ShellBarItem icon="add" text="Post" />
         </ShellBar>
       }
       sideContent={
@@ -64,6 +83,7 @@ const Layout = (props) => {
         <Outlet />
       </div>
     </NavigationLayout>
+    </UserContext.Provider>
   );
 };
 

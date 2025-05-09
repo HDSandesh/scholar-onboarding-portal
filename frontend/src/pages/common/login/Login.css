@@ -33,6 +33,10 @@
     margin-top: 5px;
 }
 
+.error-container{
+    margin:0 0 20px 0;
+}
+
 .logo{
     display: flex;
     justify-content: center;
