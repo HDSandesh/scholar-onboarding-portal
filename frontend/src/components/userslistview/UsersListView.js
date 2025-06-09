@@ -1,74 +1,82 @@
-import React from 'react'
-import "./UsersListView.css"
-import { Card, Icon, Input } from '@ui5/webcomponents-react'
-import Profile from '../../utils/profile/Profile'
-const UsersListView = ({handler}) => {
-    const handleClick = (event)=>{
-        event.stopPropagation();
-        event.currentTarget.classList.add('active')
-        handler()
-    }
-  return (
-        <div className='users-list-card'>
-            <div className='users-list-card-header'>
-                <Input type='Search' className='form-input' placeholder='Search Response' icon={<Icon name="search"/>}/>
-            </div>
-            <div className='users-list'>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Sandesh" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="H DSandesh" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Ashwin Prabhu" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Paramashiv Karant" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Jayanthi" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Sneha" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Krishnanand Bhat" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="H DSandesh" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Ashwin Prabhu" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Paramashiv Karant" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Jayanthi" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Sneha" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-                <div className='profile-container' onClick={(e)=>handleClick(e)}>
-                    <Profile name="Krishnanand Bhat" picture={"https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} description="01/04/2023 10:00AM"/>
-                    <Icon name="navigation-right-arrow"/>
-                </div>
-            </div>
-        </div>
-  )
-}
+import React, { useEffect, useRef, useState } from "react";
+import "./UsersListView.css";
+import { Card, Icon, Input, Popover } from "@ui5/webcomponents-react";
+import Profile from "../../utils/profile/Profile";
+const UsersListView = ({
+  profiles,
+  searchHandler,
+  openChat,
+  popoverIsOpen,
+  setPopoverIsOpen,
+  chatHistory,
+  onProfileClick,
+  selectedId
+}) => {
+  const btnRef = useRef(null);
 
-export default UsersListView
+  const handleClick = (event, id) => {
+    event.stopPropagation();
+    openChat(id);
+  };
+  useEffect(() => {
+    searchHandler("");
+  }, [chatHistory]);
+  return (
+    <div className="users-list-card">
+      <div className="users-list-card-header">
+        <Input
+          type="Search"
+          className="form-input"
+          placeholder="Search Response"
+          icon={<Icon name="search" />}
+          ref={btnRef}
+          onFocus={() => setPopoverIsOpen(true)}
+          onInput={(e) => searchHandler(e.target.value)}
+        />
+      </div>
+      <Popover
+        opener={btnRef.current}
+        open={popoverIsOpen}
+        hideArrow
+        preventInitialFocus
+        preventFocusRestore
+        horizontalAlign="Stretch"
+        placement="Bottom"
+        onClose={() => {
+          setPopoverIsOpen(false);
+        }}
+      >
+        <div className="search-item-container">
+          {profiles?.map((profile, index) => (
+            <div
+              className="search-item"
+              key={index}
+              onClick={() => onProfileClick([profile.id])}
+            >
+              <Profile
+                description={profile.role}
+                name={profile.firstName + " " + profile.lastName}
+                picture={profile.profilePicture}
+              />
+              <Icon name="navigation-right-arrow" />
+            </div>
+          ))}
+        </div>
+      </Popover>
+      <div className="users-list">
+        {chatHistory?.map((chat, index) => (
+          <div key={index} className={"profile-container "+ (selectedId === chat.id?"active":"")} onClick={(e) => handleClick(e,chat?.id)}>
+            <Profile
+              name={chat?.chatParticipants[0]?.user.firstName + " " + chat?.chatParticipants[0]?.user.lastName}
+              picture={chat?.chatParticipants[0]?.user.profilePicture}
+              description={chat?.chatParticipants[0]?.user?.role}
+            />
+            <Icon name="navigation-right-arrow" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default UsersListView;

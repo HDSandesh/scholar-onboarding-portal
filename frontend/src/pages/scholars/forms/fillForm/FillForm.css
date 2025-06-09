@@ -1,0 +1,19 @@
+.fillform-container{
+    margin: 15px;
+}
+
+.fillform-container h3{
+    margin:0;
+}
+
+.fillform-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.questions-container{
+    display: grid;
+    margin-top: 10px;
+    gap:15px;
+}

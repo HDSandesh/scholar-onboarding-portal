@@ -40,3 +40,14 @@
     font-size: 0.9rem;
 }
 
+.post-action-icons{
+    display: flex;
+    gap:15px;
+    align-items: center;
+}
+
+.post-tags{
+    display: flex;
+    gap:5px;
+}
+

@@ -20,11 +20,33 @@ api.interceptors.request.use(
       }
 
       config.headers["Authorization"] = `Bearer ${token}`;
+      config.headers["Content-Type"] = "application/json"
     }
 
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// RESPONSE INTERCEPTOR
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const publicRoutes = ["/login", "/set-password"];
+
+    // Get the URL from the original request
+    const requestUrl = error?.config?.url || "";
+
+    const isPublic = publicRoutes.some((route) => requestUrl.includes(route));
+
+    // Redirect to login only if the route is NOT public and status is 401
+    if (!isPublic && error.response?.status === 401) {
+      localStorage.removeItem("token"); // Clear invalid token
+      window.location.href = "/login"; // Redirect to login
+    }
+
     return Promise.reject(error);
   }
 );

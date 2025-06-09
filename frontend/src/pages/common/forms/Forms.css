@@ -1,10 +1,11 @@
 .forms{
     margin-bottom: 70px;
 }
-.course-list {
+.forms-list {
     display: grid;
     grid-template-columns: 1fr;
     gap:15px;
+    margin-top: 10px;
 }
 
 .tab-strip{
@@ -38,20 +39,20 @@
 }
 
 @media screen and (min-width: 720px) {
-    .courses{
+    .forms{
         margin-bottom: 0;
     }  
 }
 /* Large devices (992px and up) */
 @media screen and (min-width: 992px) {
-    .course-list {
+    .forms-list {
         grid-template-columns: 1fr 1fr;
     }    
 }
 
 /* Extra large devices (1200px and up) */
 @media screen and (min-width: 1200px) {
-    .course-list {
+    .forms-list {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }

@@ -9,15 +9,18 @@
     "@ui5/webcomponents-icons": "^2.6.2",
     "@ui5/webcomponents-icons-business-suite": "^2.6.2",
     "@ui5/webcomponents-icons-tnt": "^2.6.2",
-    "@ui5/webcomponents-react": "^2.6.0",
+    "@ui5/webcomponents-react": "^2.10.0",
+    "@ui5/webcomponents-react-charts": "^2.11.1",
     "axios": "^1.8.4",
     "cra-template": "1.2.0",
     "i": "^0.3.7",
     "npm": "^11.0.0",
     "react": "^19.0.0",
+    "react-big-calendar": "^1.19.2",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.1",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "socket.io-client": "^4.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

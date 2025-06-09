@@ -5,6 +5,10 @@
     overflow: auto;
 }
 
+.form-input{
+    width:100%;
+}
+
 @media screen and (min-width:720px) {
     .outlet{
         padding: 1rem;

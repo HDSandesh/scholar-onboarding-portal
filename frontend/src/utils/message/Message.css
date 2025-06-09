@@ -8,7 +8,6 @@
     margin:0 0 5px;
 }
 
-
 .message-container .time{
     font-weight: normal;
     font-size: 0.75rem;
@@ -21,6 +20,11 @@
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--ui5-v2-10-0-avatar-accent6);
+    color: #0052d2;
 }
 
 .extended-message{
@@ -32,6 +36,7 @@
 
 .faded-time{
     visibility: hidden;
+    text-transform: uppercase;
 }
 
 .extended-message:hover > .faded-time{

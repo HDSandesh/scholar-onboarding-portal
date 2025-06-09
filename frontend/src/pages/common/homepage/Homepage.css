@@ -6,12 +6,12 @@
 .homepage{
     display: grid;
     grid-template-columns: 100%;
-    margin-bottom: 85px;
+    margin-bottom: 85px; 
 }
 
 .activities-section{
     display: none;
-    margin:10px 20px;
+    margin:10px 0 10px 20px;
     margin-top: 0;;
 }
 .post-area{

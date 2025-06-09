@@ -9,14 +9,22 @@ import "@ui5/webcomponents-icons/dist/survey.js";
 import "@ui5/webcomponents-icons/dist/sys-help.js";
 import "@ui5/webcomponents-icons/dist/log.js";
 import "@ui5/webcomponents-icons/dist/add.js";
-import { Avatar, NavigationLayout, ShellBar, ShellBarItem } from "@ui5/webcomponents-react";
+import {
+  Avatar,
+  MessageStrip,
+  NavigationLayout,
+  ShellBar,
+  ShellBarItem,
+} from "@ui5/webcomponents-react";
 import UserContext from "../../../contexts/UserContext";
+import MessageContext from "../../../contexts/MessageContext";
 import Mobilenav from "../../../components/mobilenav/Mobilenav";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const Layout = (props) => {
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState()
+  const [userInfo, setUserInfo] = useState();
+  const [alertMessage, setAlertMessage] = useState();
   const handleSelectionChange = (e) => {
     const path = e.detail.item.text.toLowerCase();
     if (path === "logout") {
@@ -24,8 +32,29 @@ const Layout = (props) => {
       localStorage.removeItem("userInfo");
       navigate("/login");
     } else {
-      navigate(path === "home" ? "/" : `/${path}`);
+      let pathValue = "";
+      switch(path){
+        case "home": pathValue = '/'
+                    break;
+        case "forms":
+                    pathValue = userInfo?.role === 'Scholar'? '/forms/scholar': '/forms'
+                    break;
+        default: 
+              pathValue=`/${path}`
+      }
+      navigate(pathValue);
     }
+  };
+
+  const showAlert = (message, design) => {
+    setAlertMessage({
+      message,
+      design,
+    });
+
+    setTimeout(() => {
+      setAlertMessage(null);
+    }, 5000);
   };
 
   useEffect(() => {
@@ -36,53 +65,68 @@ const Layout = (props) => {
     if (userInfo) {
       setUserInfo(userInfo);
     }
-
   }, [navigate]);
+  
   return (
     <UserContext.Provider value={userInfo}>
-    <NavigationLayout
-      {...props}
-      header={
-        <ShellBar
-          logo={
-            <img
-              alt="SAP Logo"
-              src="https://sap.github.io/ui5-webcomponents/images/sap-logo-svg.svg"
-            />
-          }
-          notificationsCount="10"
-          onLogoClick={function Ki() {}}
-          onMenuItemClick={function Ki() {}}
-          onNotificationsClick={function Ki() {}}
-          onProductSwitchClick={function Ki() {}}
-          onProfileClick={function Ki() {}}
-          onSearchButtonClick={function Ki() {}}
-          primaryTitle="Scholar Onboarding Portal"
-          profile={
-            <Avatar>
+      <NavigationLayout
+        {...props}
+        header={
+          <ShellBar
+            logo={
               <img
-                src="https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="profile"
+                alt="SAP Logo"
+                src="https://sap.github.io/ui5-webcomponents/images/sap-logo-svg.svg"
               />
-            </Avatar>
-          }
-          showNotifications
-        >
-        </ShellBar>
-      }
-      sideContent={
-        <>
-          <div className="navigation-bar">
-            <Sidenav handler={handleSelectionChange} />
-          </div>
-          <Mobilenav handler={handleSelectionChange} />
-        </>
-      }
-    >
-      <div className="outlet">
-        <Outlet />
-      </div>
-    </NavigationLayout>
+            }
+            notificationsCount="10"
+            onLogoClick={function Ki() {}}
+            onMenuItemClick={function Ki() {}}
+            onNotificationsClick={function Ki() {}}
+            onProductSwitchClick={function Ki() {}}
+            onProfileClick={function Ki() {}}
+            onSearchButtonClick={function Ki() {}}
+            primaryTitle="Scholar Onboarding Portal"
+            profile={
+              <Avatar>
+                <img
+                  src="https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="profile"
+                />
+              </Avatar>
+            }
+            showNotifications
+          ></ShellBar>
+        }
+        sideContent={
+          <>
+            <div className="navigation-bar">
+              <Sidenav handler={handleSelectionChange} />
+            </div>
+            <Mobilenav handler={handleSelectionChange} />
+          </>
+        }
+      >
+        <div className="outlet" id="outlet">
+          {alertMessage && (
+            <MessageStrip
+              design={alertMessage.design}
+              onClose={() => setAlertMessage(null)}
+              style={{
+                position: "sticky",
+                top: 0,
+                zIndex: 1000,
+                marginBottom: "10px",
+              }}
+            >
+              {alertMessage.message}
+            </MessageStrip>
+          )}
+          <MessageContext.Provider value={showAlert}>
+            <Outlet />
+          </MessageContext.Provider>
+        </div>
+      </NavigationLayout>
     </UserContext.Provider>
   );
 };

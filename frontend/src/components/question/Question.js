@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Button,
-  Card,
   CheckBox,
   DatePicker,
   Input,
@@ -47,7 +46,6 @@ const Question = ({ questionData, updateQuestion, deleteQuestion }) => {
   };
 
   return (
-    <Card>
       <div className="question-container">
         <div className="question-header">
             <Select
@@ -149,14 +147,31 @@ const Question = ({ questionData, updateQuestion, deleteQuestion }) => {
               Add Option
             </Button>
           )}
-          {questionType === "scale" && <Slider min="1" max="5" />}
+          {questionType === "scale" && <div><br/>
+            <Input type="Number" placeholder="min" onChange={(e)=>updateQuestion(questionData.id, {
+              ...questionData,
+              min: e.target.value
+            })}/> &nbsp;
+            <Input type="Number" placeholder="max" onChange={(e)=>updateQuestion(questionData.id, {
+              ...questionData,
+              max: e.target.value
+            })}/>
+          </div>}
           {questionType === "date" && (
-            <DatePicker disabled primaryCalendarType="Gregorian" valueState="None" />
+            <div>
+            <DatePicker value={questionData?.minDate} primaryCalendarType="Gregorian" valueState="None" onChange={(e)=> updateQuestion(questionData.id, {
+              ...questionData,
+              minDate: e.target.value
+            })}/>
+            <DatePicker value={questionData?.maxDate} primaryCalendarType="Gregorian" valueState="None" onChange={(e)=> updateQuestion(questionData.id, {
+              ...questionData,
+              maxDate: e.target.value
+            })}/>
+            </div>
           )}
           {questionType === "time" && <TimePicker valueState="None" disabled />}
         </div>
       </div>
-    </Card>
   );
 };
 

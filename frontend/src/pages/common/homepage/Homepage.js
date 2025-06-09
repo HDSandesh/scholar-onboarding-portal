@@ -17,6 +17,7 @@ import {
   Button,
   Card,
   FileUploader,
+  MessageStrip,
   MultiInput,
   TextArea,
   Title,
@@ -24,6 +25,7 @@ import {
 } from "@ui5/webcomponents-react";
 import Profile from "../../../utils/profile/Profile";
 import UserContext from "../../../contexts/UserContext";
+import MessageContext from "../../../contexts/MessageContext";
 
 const Homepage = (props) => {
   const [posts, setPosts] = useState([]);
@@ -34,7 +36,10 @@ const Homepage = (props) => {
   const [postText, setPostText] = useState("");
   const [tokens, setTokens] = useState([]);
   const [currentInput, setCurrentInput] = useState("");
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
   const userInfo = useContext(UserContext);
+  const showAlert = useContext(MessageContext)
   const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files || []);
 
@@ -65,15 +70,38 @@ const Homepage = (props) => {
     setPreviewUrls(newPreviews);
   };
 
+  const handleAction = (id, action) => {
+    let updatedPosts;
+    switch (action) {
+      case "approve":
+        updatedPosts = posts.map((post) => {
+          if (post.id === id) return { ...post, isApproved: true };
+          return post;
+        });
+        break;
+      case "reject":
+        updatedPosts = posts.map((post) => {
+          if (post.id === id) return { ...post, isApproved: false };
+          return post;
+        });
+        break;
+      case "delete":
+        updatedPosts = posts.filter((post) => post.id !== id);
+        break;
+    }
+    setPosts(updatedPosts);
+  };
+
+
   const handlePostSubmit = async () => {
     if (!postText.trim() && files.length === 0) {
-      alert("Please enter some text or attach files.");
+      showAlert("Please enter some text or attach files.", "Negative");
       return;
     }
 
     const formData = new FormData();
     formData.append("content", postText);
-    formData.append("tags", tokens)
+    formData.append("tags", tokens);
     files.forEach((file) => formData.append("media", file));
 
     try {
@@ -87,21 +115,42 @@ const Homepage = (props) => {
       setPostText("");
       setFiles([]);
       setPreviewUrls([]);
-      setTokens([])
+      setTokens([]);
       fetchPosts();
+      showAlert("Post Uploaded Successfully", "Positive");
     } catch (error) {
+      showAlert("Failed to upload post", "Negative");
       console.error("Upload error:", error);
-      alert("Failed to upload post.");
     }
   };
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get("/posts");
-      setPosts(response.data);
-      setLoading(false);
-    } catch (error) {
-      setError("Error fetching posts");
+      setLoading(true);
+      const res = await axios.get(`/posts?page=${page}&limit=30`);
+
+      if (page >= res?.data.totalPages) {
+        setHasMore(false); // No more posts to load
+      }
+
+      setPosts((prev) => {
+        const existingIds = new Set(prev.map((post) => post.id));
+
+        // Filter only new posts
+        const newPosts = res.data.posts.filter(
+          (post) => !existingIds.has(post.id)
+        );
+
+        // Merge and sort by updatedAt (descending)
+        const merged = [...prev, ...newPosts].sort(
+          (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+        );
+
+        return merged;
+      });
+    } catch (err) {
+      setError("Failed to load posts");
+    } finally {
       setLoading(false);
     }
   };
@@ -109,7 +158,7 @@ const Homepage = (props) => {
   const handleTokenInput = (e) => {
     const value = e.target.value;
     const lastChar = value.slice(-1);
-    
+
     if (lastChar === " ") {
       const trimmed = value.trim();
       if (trimmed && !tokens.includes(trimmed)) {
@@ -129,108 +178,127 @@ const Homepage = (props) => {
   };
 
   useEffect(() => {
+    const container = document.getElementById("outlet");
+    if (!container) return;
+    const handleScroll = () => {
+      if (
+        container.scrollTop + container.clientHeight >=
+          container.scrollHeight - 100 &&
+        !loading &&
+        hasMore
+      ) {
+        setPage((prev) => prev + 1);
+      }
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [loading, hasMore]);
+
+  useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [page]);
 
   return (
-    <div className="homepage">
-      <section className="post-area">
-        <Card>
-          <div className="create-post-card">
-            <Profile
-              name={`${userInfo?.firstName} ${userInfo?.lastName}, What's in your mind today?`}
-              description={"Share an update or add pictures"}
-              picture={userInfo?.profilePicture}
-            />
-            <br />
-            <TextArea
-              maxlength={300}
-              showExceededText
-              growing
-              rows={3}
-              value={postText}
-              onInput={(e) => setPostText(e.target.value)}
-            />
-            <label>Tags:</label>
-            <MultiInput
-              value={currentInput}
-              onInput={handleTokenInput}
-              onTokenDelete={handleTokenDelete}
-              style={{ width: "300px" }}
-              tokens={tokens.map((token, index) => (
-                <Token key={index} text={token} />
-              ))}
-              placeholder="Type a tag and press space"
-              type="Text"
-              valueState="None"
-            />
-
-            {/* Preview Thumbnails with Cancel Buttons */}
-            {previewUrls.length > 0 && (
-              <div className="image-preview-container">
-                {previewUrls.map((url, index) => (
-                  <div className="image-preview-item" key={index}>
-                    <img
-                      src={url}
-                      alt={`preview-${index}`}
-                      className="preview-img"
-                    />
-                    <button
-                      className="remove-btn"
-                      onClick={() => handleRemoveImage(index)}
-                    >
-                      X
-                    </button>
-                  </div>
+      <div className="homepage">
+        <section className="post-area">
+          <Card>
+            <div className="create-post-card">
+              <Profile
+                name={`${userInfo?.firstName} ${userInfo?.lastName}, What's in your mind today?`}
+                description={"Share an update or add pictures"}
+                picture={userInfo?.profilePicture}
+              />
+              <br />
+              <TextArea
+                maxlength={300}
+                showExceededText
+                growing
+                rows={3}
+                value={postText}
+                onInput={(e) => setPostText(e.target.value)}
+              />
+              <label>Tags:</label>
+              <MultiInput
+                value={currentInput}
+                onInput={handleTokenInput}
+                onTokenDelete={handleTokenDelete}
+                style={{ width: "300px" }}
+                tokens={tokens.map((token, index) => (
+                  <Token key={index} text={token} />
                 ))}
-              </div>
-            )}
+                placeholder="Type a tag and press space"
+                type="Text"
+                valueState="None"
+              />
 
-            <div
-              className="create-post-actions"
-              style={{
-                marginTop: "10px",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <FileUploader hideInput multiple onChange={handleFileChange}>
-                <Button icon="attachment">Attach</Button>
-              </FileUploader>
+              {/* Preview Thumbnails with Cancel Buttons */}
+              {previewUrls.length > 0 && (
+                <div className="image-preview-container">
+                  {previewUrls.map((url, index) => (
+                    <div className="image-preview-item" key={index}>
+                      <img
+                        src={url}
+                        alt={`preview-${index}`}
+                        className="preview-img"
+                      />
+                      <button
+                        className="remove-btn"
+                        onClick={() => handleRemoveImage(index)}
+                      >
+                        X
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
 
-              <Button
-                icon="paper-plane"
-                design="Emphasized"
-                onClick={handlePostSubmit}
+              <div
+                className="create-post-actions"
+                style={{
+                  marginTop: "10px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
               >
-                Post
-              </Button>
+                <FileUploader hideInput multiple onChange={handleFileChange}>
+                  <Button icon="attachment">Attach</Button>
+                </FileUploader>
+
+                <Button
+                  icon="paper-plane"
+                  design="Emphasized"
+                  onClick={handlePostSubmit}
+                >
+                  Post
+                </Button>
+              </div>
             </div>
-          </div>
-        </Card>
-        {loading && <p>Loading posts...</p>}
-        {error && <p>{error}</p>}
-        {!loading && !error && posts.length === 0 && <p>No posts available.</p>}
-        {!loading &&
-          !error &&
-          posts.length > 0 &&
-          posts.map((post) => (
+          </Card>
+          {loading && <p>Loading posts...</p>}
+          {error && <p>{error}</p>}
+          {!loading && !error && posts.length === 0 && (
+            <p>No posts available.</p>
+          )}
+          {posts.map((post) => (
             <Post
               key={post.id}
               id={post.id}
               user={post.User}
+              tags={post.tags}
               postedOn={post.updatedAt}
+              isApproved={post.isApproved}
               postText={post.content}
               media={post.media}
-              triggerReload={fetchPosts}
+              handleParentUpdate={(id, action) => handleAction(id, action)}
             />
           ))}
-      </section>
-      <section className="activities-section">
-        <Leaderboard />
-        <Events />
-      </section>
-    </div>
+        </section>
+        <section className="activities-section">
+          <Leaderboard />
+          <Events />
+        </section>
+      </div>
   );
 };
 

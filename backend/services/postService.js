@@ -4,14 +4,23 @@ const createPost = async (userId, content, media, tags) => {
   return db.Post.create({ userId, content, media, tags });
 };
 
-const getAllPosts = async () => {
-  return db.Post.findAll({
+const getAllPosts = async (filter = {},offset, limit) => {
+  const { count, rows } = await db.Post.findAndCountAll({
+    where: filter,
     include: {
       model: db.User,
-      attributes: ['id','firstName', 'lastName', 'role', 'profilePicture'],
+      attributes: ['id', 'firstName', 'lastName', 'role', 'profilePicture'],
     },
     order: [['updatedAt', 'DESC']],
+    offset,
+    limit,
   });
+
+  return {
+    totalPosts: count,
+    totalPages: Math.ceil(count / limit),
+    posts: rows,
+  };
 };
 
 const getPostsByUser = async (userId) => {

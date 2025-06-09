@@ -5,7 +5,7 @@ const createPost = async (req, res) => {
     const { content, tags } = req.body;
     let tagsArray = [];
     if (tags && typeof tags === "string") {
-      tagsArray = tags.split(" ").map(tag => tag.trim()).filter(tag => tag); // Split by spaces and clean up
+      tagsArray = tags.split(",").map(tag => tag.trim()).filter(tag => tag); // Split by spaces and clean up
     }
 
     // Ensure tags are unique (optional)
@@ -15,16 +15,27 @@ const createPost = async (req, res) => {
     const post = await postService.createPost(req.user.id, content, media, tagsArray);
     res.status(201).json(post);
   } catch (error) {
-    console.log(error)
-    res.status(500).json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 
 const getAllPosts = async (req, res) => {
   try {
-    const posts = await postService.getAllPosts();
+    const { role } = req.user;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 30;
+    const offset = (page - 1) * limit;
+    
+    let filter = {};
+    // Scholars should only see approved posts
+    if (role === "Scholar") {
+      filter = { isApproved: true };
+    }
+
+    const posts = await postService.getAllPosts(filter,offset,limit);
     res.json(posts);
   } catch (error) {
+    console.log(error)
     res.status(500).json({ error: error.message });
   }
 };
@@ -44,7 +55,7 @@ const approvePost = async (req, res) => {
     const post = await postService.approvePost(req.params.postId);
     res.json(post);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 

@@ -1,15 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Post.css";
 import "@ui5/webcomponents-icons/dist/heart-2.js";
 import "@ui5/webcomponents-icons/dist/post.js";
 import "@ui5/webcomponents-icons/dist/decline.js";
 import "@ui5/webcomponents-icons/dist/delete.js";
 import "@ui5/webcomponents-icons/dist/accept.js";
-import { Carousel, Icon, Menu, MenuItem } from "@ui5/webcomponents-react";
+import {
+  Carousel,
+  Icon,
+  Menu,
+  MenuItem,
+  Popover,
+  Tag
+} from "@ui5/webcomponents-react";
 import Profile from "../../utils/profile/Profile";
-import axios from "../../api/axios"
-
-const Post = ({ id, user, postedOn, postText, media, triggerReload }) => {
+import axios from "../../api/axios";
+import MessageContext from "../../contexts/MessageContext";
+const Post = ({
+  id,
+  user,
+  postedOn,
+  postText,
+  media,
+  isApproved,
+  tags,
+  handleParentUpdate,
+}) => {
   const timeAgo = (dateString) => {
     const now = new Date();
     const past = new Date(dateString);
@@ -31,7 +47,11 @@ const Post = ({ id, user, postedOn, postText, media, triggerReload }) => {
   };
   const [isOpen, setIsOpen] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [popoverIsOpen, setPopoverIsOpen] = useState(null);
   const buttonRef = useRef(null);
+  const popOverRef = useRef(null);
+
+  const showAlert = useContext(MessageContext);
 
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -40,31 +60,51 @@ const Post = ({ id, user, postedOn, postText, media, triggerReload }) => {
     }
   }, []);
 
-  const checkIsPostOwner = ()=>{
+  const checkIsPostOwner = () => {
     return loggedInUser?.id === user?.id;
-  }
+  };
 
-  const checkModerator = ()=>{
-   return ["Admin", "VTManager", "OnboardingBuddy"].includes(
+  const checkModerator = () => {
+    return ["Admin", "VTManager", "OnboardingBuddy"].includes(
       loggedInUser?.role
     );
-  }
+  };
 
   const approvePost = async (id) => {
-    await axios.patch(`/posts/${id}/approve`);
-    console.log("Post approved");
+    try {
+      await axios.patch(`/posts/${id}/approve`);
+      showAlert("Post approved successfully!", "Positive");
+      handleParentUpdate(id, "approve");
+      // Optionally show a success toast here
+    } catch (error) {
+      showAlert("Failed to approve post. Please try again!", "Negative");
+      // Show error toast or message to user
+    }
   };
-  
+
   const rejectPost = async (id) => {
-    await axios.patch(`/posts/${id}/reject`);
-    console.log("Post rejected");
+    try {
+      await axios.patch(`/posts/${id}/reject`);
+      showAlert("Post rejected successfully!", "Positive");
+      handleParentUpdate(id, "reject");
+      // Optionally show a success toast here
+    } catch (error) {
+      showAlert("Failed to reject post. Please try again!", "Negative");
+      // Show error toast or message to user
+    }
   };
-  
+
   const deletePost = async (id) => {
-    await axios.delete(`/posts/${id}`);
-    triggerReload()
+    try {
+      await axios.delete(`/posts/${id}`);
+      handleParentUpdate(id, "delete");
+      showAlert("Post deleted successfully!", "Positive");
+    } catch (error) {
+      showAlert("Failed to delete post. Please try again!", "Negative");
+      // Show error toast or message to user
+    }
   };
-  
+
   const editPost = (id) => {
     // Open modal or redirect to edit page
     console.log("Edit post", id);
@@ -89,7 +129,10 @@ const Post = ({ id, user, postedOn, postText, media, triggerReload }) => {
           break;
       }
     } catch (error) {
-      console.error(`Failed to ${action} post:`, error.response?.data?.message || error.message);
+      console.error(
+        `Failed to ${action} post:`,
+        error.response?.data?.message || error.message
+      );
     }
   };
 
@@ -104,20 +147,53 @@ const Post = ({ id, user, postedOn, postText, media, triggerReload }) => {
         <div className="post-menu">
           {(checkIsPostOwner() || checkModerator()) && (
             <>
-              <Icon
-                name="overflow"
-                ref={buttonRef}
-                style={{ transform: "rotate(90deg)", color: "#000" }}
-                onClick={() => setIsOpen((prev) => !prev)}
-              ></Icon>
-              <Menu opener={buttonRef.current} open={isOpen} className="post-menu">
+              <div className="post-action-icons">
+                {!isApproved && (
+                  <>
+                    <Icon
+                      ref={popOverRef}
+                      onClick={() => setPopoverIsOpen(true)}
+                      name="warning"
+                      design="Critical"
+                      style={{ height: "20px", width: "20px" }}
+                      showTooltip
+                    />
+                    <Popover
+                      className="footerPartNoPadding"
+                      horizontalAlign="Center"
+                      placement="Start"
+                      verticalAlign="Center"
+                      opener={popOverRef.current}
+                      open={popoverIsOpen}
+                      onClose={() => {
+                        setPopoverIsOpen(false);
+                      }}
+                    >
+                      Requires Approval
+                    </Popover>
+                  </>
+                )}
+                <Icon
+                  name="overflow"
+                  ref={buttonRef}
+                  style={{ transform: "rotate(90deg)", color: "#000" }}
+                  onClick={() => setIsOpen((prev) => !prev)}
+                ></Icon>
+              </div>
+              <Menu
+                opener={buttonRef.current}
+                open={isOpen}
+                className="post-menu"
+              >
                 {checkModerator() && (
                   <>
-                    <MenuItem
-                      text="Approve"
-                      icon="accept"
-                      onClick={() => handleAction("approve")}
-                    />
+                    {!isApproved && (
+                      <MenuItem
+                        text="Approve"
+                        icon="accept"
+                        onClick={() => handleAction("approve")}
+                      />
+                    )}
                     <MenuItem
                       text="Reject"
                       icon="decline"
@@ -144,6 +220,19 @@ const Post = ({ id, user, postedOn, postText, media, triggerReload }) => {
       </div>
       <div className="post-body">
         <p className="post-text">{postText}</p>
+        <p className="post-tags">
+          {tags?.map((tag,index) => (
+            <Tag
+            key={index}
+            design="Set2"
+            colorScheme="5"
+            icon={<Icon name="number-sign" />}
+            onClick={function Ki() {}}
+          >
+            {tag}
+          </Tag>
+          ))}
+        </p>
         {media?.length > 0 && (
           <div className="post-media">
             <Carousel backgroundDesign="Transparent">

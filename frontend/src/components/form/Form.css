@@ -15,7 +15,8 @@
 }
 
 .form .title-value{
-    color: #DA6C6C;
+    /* color: #DA6C6C; */
+    color: var(--sapButton_Attention_TextColor);
     font-weight: bold;
 }
 

@@ -1,5 +1,7 @@
 .question-container{
-    padding: 10px;
+    padding: 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: var(--_ui5-v2-10-0_card_border-radius);
 }
 
 .question-header{

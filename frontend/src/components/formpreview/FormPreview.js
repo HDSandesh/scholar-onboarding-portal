@@ -19,10 +19,9 @@ const FormPreview = ({ questions }) => {
         <p>No questions added yet.Please wait till something gets added</p>
       ) : (
         questions.map((q, index) => (
-          <Card>
             <div key={index} className="preview-question">
               <p>
-                <strong>{q.text || "Untitled Question"}</strong>
+                <strong>{index+1}. {q.text || "Untitled Question"}</strong>
               </p>
               <hr />
               {q.type === "short-answer" && (
@@ -36,7 +35,6 @@ const FormPreview = ({ questions }) => {
               {q.type === "paragraph" && <TextArea key={index} />}
               {q.type === "mcq" &&
                 q.options.map((option, i) => (
-                  <div key={i}>
                     <RadioButton
                       onChange={function Ki() {}}
                       text={option}
@@ -44,13 +42,10 @@ const FormPreview = ({ questions }) => {
                       name={q + index}
                       valueState="None"
                     />
-                  </div>
                 ))}
               {q.type === "checkbox" &&
                 q.options.map((option, i) => (
-                  <div key={i}>
                     <CheckBox key={i} text={option} />
-                  </div>
                 ))}
               {q.type === "dropdown" && (
                 <Select>
@@ -59,13 +54,12 @@ const FormPreview = ({ questions }) => {
                   ))}
                 </Select>
               )}
-              {q.type === "scale" && <Slider key={index} />}
+              {q.type === "scale" && <Slider key={index} min={parseInt(q.min)??0} max={parseInt(q.max)??10}  />}
               {q.type === "date" && (
                 <DatePicker key={index} primaryCalendarType="Gregorian" valueState="None" />
               )}
               {q.type === "time" && <TimePicker key={index} valueState="None"/>}
             </div>
-          </Card>
         ))
       )}
     </div>

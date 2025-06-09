@@ -47,6 +47,21 @@ const User = sequelize.define("User", {
       },
     },
   },
+  buddyId: {
+    type: DataTypes.UUID,
+    allowNull: true,
+    references: {
+      model: "Users", // assumes self-referencing, buddy is also a user
+      key: "id",
+    },
+    validate: {
+      isBuddyAllowed(value) {
+        if (this.role !== "Scholar" && value) {
+          throw new Error("Only Scholars can be assigned a buddy.");
+        }
+      },
+    },
+  },
   description: {
     type: DataTypes.TEXT,
     allowNull: true,
@@ -98,6 +113,10 @@ const User = sequelize.define("User", {
 // Relationships
 Batch.hasMany(User, { foreignKey: "batchId", onDelete: "SET NULL" });
 User.belongsTo(Batch, { foreignKey: "batchId" });
+
+User.belongsTo(User, { as: "buddy", foreignKey: "buddyId" });
+User.hasMany(User, { as: "mentees", foreignKey: "buddyId" })
+
 
 // Ensure correct constraints at the application level
 User.addHook("beforeSave", (user) => {

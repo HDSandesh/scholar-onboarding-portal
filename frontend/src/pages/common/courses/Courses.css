@@ -37,6 +37,11 @@
     border-bottom: 2px solid var(--sapButton_Emphasized_Background);
 }
 
+.course-form{
+    display: grid;
+    gap:15px;
+}
+
 @media screen and (min-width: 720px) {
     .courses{
         margin-bottom: 0;

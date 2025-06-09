@@ -19,6 +19,18 @@
     border-radius: 10px;
 }
 
+.search-item-container{
+    display: grid;
+    gap:10px;
+}
+
+.search-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
 @media screen and (min-width: 720px) {
     .users-list{
         max-height: 75vh;
